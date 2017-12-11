@@ -21,5 +21,4 @@ $(document).ready(function(){
     var car = [];
     car.push("1");
     car.push("2");
-    alert(car[1]);
 })
