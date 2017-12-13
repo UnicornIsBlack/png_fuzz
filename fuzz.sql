@@ -11,14 +11,3 @@ create table filename(
     `staus` int(1) NOT NULL,
     PRIMARY KEY(`id`)
 )ENGINE=InnoDB default CHARSET=utf8;
-
-
-drop table if exists process;
-
-create table process(
-    `id` int(2) UNIQUE NOT NULL auto_increment,
-    `py` int(1) NOT NULL,
-    `js` int(1) NOT NULL
-)ENGINE=InnoDB default CHARSET=utf8;
-
-insert into process(`py`,`js`) values(1,1);
