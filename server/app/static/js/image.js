@@ -6,7 +6,7 @@ function addImg(imageFiles)
     {
         var img = document.createElement("img");
         img.setAttribute("class","image");
-        img.src = "../static/image/" + imageFiles[i];
+        img.src = "../static/image/259/7/" + imageFiles[i];
         div.appendChild(img);
     }
 }
