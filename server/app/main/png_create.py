@@ -3,7 +3,7 @@ import os
 
 class PngFile:
 
-    def __init__(self,fileDir):
+    def __init__(self,fileDir,delDir):
         self.start = '89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 00 ' \
                      '20 00 00 00 20 02 03 00 00 00 0E 14 92 67 00 00 00 04 67 ' \
                      '41 4D 41 00 00 B1 8F 0B FC 61 05 00 00 00 0C 50 4C 54 45 ' \
@@ -32,17 +32,17 @@ class PngFile:
                       'C0 0E D7 2C D8 D6 68 B1 EE 54 E0 07 EC 70 50 42 91 F9 97 7A 00 00 00 09 ' \
                       '49 44 41 54 00 00 0B 12 00 00 0B 12 42 01 5A F9 B7 00 00 00 09 49 44 41 ' \
                       '54 00 00 0B 12 00 00 0B 12 42 01 5A F9 B7 00 00 00 09 49 44 41 54 00 00 ' \
-                      '0B 12 00 00 0B 12 01 EE 8F E9 9D 00 00 00 01 49 44 41 54 01'
-        self.end = ''
-        self.fuzz = '60 82'
+                      '0B 12 00 00 0B 12 01 EE 8F E9 9D '
+        self.end = ' 00 01 49 44 41 54 01'
+        self.fuzz = '00 00'
         self.fileDir = fileDir
         self.rDir = '../static/image/'
-        dir = self.rDir + '259/'
+        dir = self.rDir + delDir + '/'
         self.delete_file(dir)
         self.mkdir()
 
     def get_hex(self,fuzz):
-        png = bytearray.fromhex(self.start)
+        png = bytearray.fromhex(self.start332)
         png.extend(fuzz)
         png.extend(bytearray.fromhex(self.end))
         return png
@@ -87,7 +87,7 @@ class PngFile:
         return bytearray(array_num)
 
     def get_filename(self,num, exDir):
-        filename = self.rDir + self.fileDir + '/' + exDir + '/{0:024b}'.format(num)
+        filename = self.rDir + self.fileDir + '/' + exDir + '/{0:016b}'.format(num)
         return filename
 
     def run(self):
@@ -112,5 +112,5 @@ class PngFile:
 
 
 if __name__ == '__main__':
-    png = PngFile('259')
+    png = PngFile('324','324')
     png.run()
