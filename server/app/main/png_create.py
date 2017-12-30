@@ -17,7 +17,7 @@ class PngFile:
                      '02 4A 04 2E C1 33 8A BC 88 78 1F 57 2A 20 19 B4 02 52 D9 ' \
                      '6C CD 00 B3 D9 0A A0 03 E1 6E F6 C1 4B 3B 92 3D 9B DF 92 ' \
                      '65 60 5C 97 15 80 D0 52 39 7C E4 07 42 6D 1F 3E F9 D5 83 ' \
-                     'F1 00 00 00 00 49 45 4E 44 AE 42 '
+                     'F1 00 00 '
 
         self.start332 = '89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 00 20 00 00 00 20 ' \
                       '04 03 00 00 00 81 54 67 C7 00 00 00 12 50 4C 54 45 FF FF FF FF FF FF FF ' \
@@ -32,8 +32,8 @@ class PngFile:
                       'C0 0E D7 2C D8 D6 68 B1 EE 54 E0 07 EC 70 50 42 91 F9 97 7A 00 00 00 09 ' \
                       '49 44 41 54 00 00 0B 12 00 00 0B 12 42 01 5A F9 B7 00 00 00 09 49 44 41 ' \
                       '54 00 00 0B 12 00 00 0B 12 42 01 5A F9 B7 00 00 00 09 49 44 41 54 00 00 ' \
-                      '0B 12 00 00 0B 12 01 EE 8F E9 9D '
-        self.end = ' 00 01 49 44 41 54 01'
+                      '0B 12 00 00 0B 12 01 EE 8F E9 9D 00 00 00 01 49 44 41 54 01'
+        self.end = ' 49 45 4E 44 AE 42 60 82'
         self.fuzz = '00 00'
         self.fileDir = fileDir
         self.rDir = '../static/image/'
@@ -42,7 +42,7 @@ class PngFile:
         self.mkdir()
 
     def get_hex(self,fuzz):
-        png = bytearray.fromhex(self.start332)
+        png = bytearray.fromhex(self.start)
         png.extend(fuzz)
         png.extend(bytearray.fromhex(self.end))
         return png
@@ -112,5 +112,5 @@ class PngFile:
 
 
 if __name__ == '__main__':
-    png = PngFile('324','324')
+    png = PngFile('251','252')
     png.run()
